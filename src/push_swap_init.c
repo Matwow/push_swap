@@ -6,7 +6,7 @@
 /*   By: maroard <maroard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 11:51:32 by maroard           #+#    #+#             */
-/*   Updated: 2025/12/11 16:46:58 by maroard          ###   ########.fr       */
+/*   Updated: 2025/12/15 18:33:27 by maroard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	link_nodes(size_t i, char **arg, t_stack **A)
 {
 	if (!is_number(arg[i]) || !(ft_atoll(arg[i]) >= INT_MIN && ft_atoll(arg[i]) <= INT_MAX))
 		return (0);
-	node_add_back(&((*A)->top), create_node(ft_atoi(arg[i++])));
+	node_add_back(&((*A)->top), create_node(ft_atoi(arg[i])));
 	(*A)->size++;
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: maroard <maroard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 11:20:32 by maroard           #+#    #+#             */
-/*   Updated: 2025/12/11 16:51:36 by maroard          ###   ########.fr       */
+/*   Updated: 2025/12/15 18:36:38 by maroard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ float	compute_disorder(t_stack *A)
 	if (!A || !A->top || !A->top->next)
 		return (0);
 	current = A->top;
-	next = current->next;
 	mistakes = 0;
 	total_pairs = 0;
 	while (current)
@@ -48,7 +47,7 @@ int	push_swap_init(int argc, char *argv[], t_stack **A)
 	t_node	*next;
 	
 	*A = create_stack_A(argc, argv);
-	if (!A)
+	if (!(*A))
 		return (0);
 	current = (*A)->top;
 	while (current)
@@ -62,7 +61,6 @@ int	push_swap_init(int argc, char *argv[], t_stack **A)
 		}
 		current = current->next;
 	}
-	print_stack((*A)->top);
 	return (1);
 }
 
@@ -74,11 +72,25 @@ int main(int argc, char *argv[])
 	if (argc == 1 || !push_swap_init(argc, argv, &A))
 	{
 		ft_putstr_fd("Error\n", 0);
-		clear_stack(&(A->top), A);
 		return (0);
 	}
 	printf("\nDisorder: %f\n", compute_disorder(A));
 	ft_putstr_fd("OK\n", 1);
+	B = malloc(sizeof(t_stack));
+	if (!B)
+	{
+		free(B);
+		clear_stack(&(A->top), A);
+		return (0);
+	}
+	B->top = NULL;
+	B->size = 0;
+	print_stack(A->top, 'A');
+	print_stack(B->top, 'B');
+	push_B(&A, &B);
+	print_stack(A->top, 'A');
+	print_stack(B->top, 'B');
 	clear_stack(&(A->top), A);
+	clear_stack(&(B->top), B);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: maroard <maroard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 11:20:30 by maroard           #+#    #+#             */
-/*   Updated: 2025/12/11 12:05:46 by maroard          ###   ########.fr       */
+/*   Updated: 2025/12/15 18:47:53 by maroard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,45 +25,53 @@ t_node	*create_node(int content)
 	return (node);
 }
 
-t_node	*last_node(t_node *list)
+t_node	*last_node(t_node *top)
 {
-	while (list != NULL && list->next != NULL)
-		list = list->next;
-	return (list);
+	while (top != NULL && top->next != NULL)
+		top = top->next;
+	return (top);
 }
 
-void	node_add_back(t_node **list, t_node *new)
+void	node_add_back(t_node **top, t_node *new)
 {
-	if (!list || !new)
+	if (!top || !new)
 		return ;
-	if (!*list)
+	if (!*top)
 	{
-		*list = new;
+		*top = new;
 		return ;
 	}
-	last_node(*list)->next = new;
+	last_node(*top)->next = new;
 }
 
-t_stack	*clear_stack(t_node **top, t_stack *stack)
+void	node_add_front(t_node **top, t_node *new)
+{
+	if (!new)
+		return ;
+	new->next = *top;
+	*top = new;
+}
+
+void	*clear_stack(t_node **top, t_stack *A_or_B)
 {
 	t_node	*temp;
 
-	while (*top != NULL)
+	while (*top)
 	{
 		temp = (*top)->next;
 		free(*top);
 		*top = temp;
 	}
-	free(stack);
+	free(A_or_B);
 	return (NULL);
 }
 
-void	print_stack(t_node *list)
+void	print_stack(t_node *top, char A_or_B)
 {
-	ft_printf("Stack A:\n");
-	while (list != NULL)
+	ft_printf("Stack %c:\n", A_or_B);
+	while (top)
 	{
-		ft_printf("[ %d ]\n", list->content);
-		list = list->next;
+		ft_printf("[ %d ]\n", top->content);
+		top = top->next;
 	}
 }
