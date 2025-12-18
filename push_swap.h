@@ -6,7 +6,7 @@
 /*   By: maroard <maroard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 11:20:35 by maroard           #+#    #+#             */
-/*   Updated: 2025/12/17 19:18:14 by maroard          ###   ########.fr       */
+/*   Updated: 2025/12/18 12:23:43 by maroard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_stack
     int		size;
 }			t_stack;
 
-typedef enum strategy_selector
+typedef enum strategies
 {
 	SIMPLE,
 	MEDIUM,
@@ -51,6 +51,7 @@ void	node_add_front(t_node **top, t_node *new);
 void    *clear_stack(t_node **top, t_stack *A_or_B);
 void	print_stack(t_node *top, char A_or_B);
 
+int		strategy_selector(int argc, char *argv[], int *strategy);
 t_stack	*create_stack_a(int argc, char *argv[]);
 int		occurence_checker(t_stack *A);
 

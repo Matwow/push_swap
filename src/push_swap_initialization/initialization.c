@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_init.c                                   :+:      :+:    :+:   */
+/*   initialization.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maroard <maroard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 11:51:32 by maroard           #+#    #+#             */
-/*   Updated: 2025/12/17 19:20:40 by maroard          ###   ########.fr       */
+/*   Updated: 2025/12/18 12:32:41 by maroard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,16 +83,20 @@ static t_stack	*args_split(char *arg)
 
 t_stack	*create_stack_a(int argc, char *argv[])
 {
-	size_t	i;
+	int		i;
 	t_stack	*a;
 
 	if (argc == 2 && ft_strchr(argv[1], ' '))
 		return (args_split(argv[1]));
+	if (argc == 3 && ft_strchr(argv[2], ' '))
+		return (args_split(argv[2]));
 	i = 1;
+	if (!is_number(argv[i]))
+		i = 2;
 	a = malloc(sizeof(t_stack));
 	if (!a)
 		return (NULL);
-	while (i < (size_t)(argc))
+	while (i < (argc))
 	{
 		if (!add_back(i++, argv, &a))
 			return (clear_stack(&(a->top), a));

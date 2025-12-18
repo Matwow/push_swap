@@ -6,7 +6,7 @@
 /*   By: maroard <maroard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 15:48:49 by maroard           #+#    #+#             */
-/*   Updated: 2025/12/17 17:34:18 by maroard          ###   ########.fr       */
+/*   Updated: 2025/12/18 10:51:28 by maroard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,10 @@
 // 	while (i < i_to_extract)
 // 	{
 // 		if (i_to_extract <= (*A)->size / 2)
-// 			rotate_A(A, 0);
+// 			rotate_a(A, FALSE);
 // 		else
-// 			reverse_rotate_A(A, 0);
+// 			reverse_rotate_a(A, FALSE);
 // 		i++;
 // 	}
-// 	push_B(A, B);
+// 	push_b(A, B);
 // }
