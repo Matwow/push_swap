@@ -6,11 +6,11 @@
 /*   By: maroard <maroard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 11:20:30 by maroard           #+#    #+#             */
-/*   Updated: 2025/12/16 14:36:16 by maroard          ###   ########.fr       */
+/*   Updated: 2025/12/17 18:17:22 by maroard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 #include <stdlib.h>
 
 t_node	*create_node(int content)

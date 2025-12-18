@@ -1,52 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap_moves.c                                       :+:      :+:    :+:   */
+/*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maroard <maroard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 16:01:23 by maroard           #+#    #+#             */
-/*   Updated: 2025/12/16 14:12:02 by maroard          ###   ########.fr       */
+/*   Updated: 2025/12/17 19:15:04 by maroard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
-#include <stdlib.h>
+#include "push_swap.h"
 
-int	swap_A(t_stack **A, int ss)
+int	swap_a(t_stack **a, t_bool ss)
 {
 	t_node	*temp;
 
-	if (!(*A) || !(*A)->top || !(*A)->top->next)
+	if (!(*a) || !(*a)->top || !(*a)->top->next)
 		return (0);
-	temp = (*A)->top;
-	(*A)->top = (*A)->top->next;
-	(*A)->top->next = temp;
-	if (ss == 0)
+	temp = (*a)->top;
+	(*a)->top = (*a)->top->next;
+	(*a)->top->next = temp;
+	if (ss == FALSE)
 		ft_printf("sa\n");
 	return (1);
 }
 
-int	swap_B(t_stack **B, int ss)
+int	swap_b(t_stack **b, t_bool ss)
 {
 	t_node	*temp;
 
-	if (!(*B) || !(*B)->top || !(*B)->top->next)
+	if (!(*b) || !(*b)->top || !(*b)->top->next)
 		return (0);
-	temp = (*B)->top;
-	(*B)->top = (*B)->top->next;
-	(*B)->top->next = temp;
-	if (ss == 0)
+	temp = (*b)->top;
+	(*b)->top = (*b)->top->next;
+	(*b)->top->next = temp;
+	if (ss == FALSE)
 		ft_printf("sb\n");
 	return (1);
 }
 
-int	swap_swap(t_stack **A, t_stack **B)
+int	swap_swap(t_stack **a, t_stack **b)
 {
-	if ((!(*A) || !(*A)->top || !(*A)->top->next) || (!(*B) || !(*B)->top || !(*B)->top->next))
+	if ((!(*a) || !(*a)->top || !(*a)->top->next)
+		|| (!(*b) || !(*b)->top || !(*b)->top->next))
 		return (0);
-	swap_A(&(*A), 1);
-	swap_B(&(*B), 1);
+	swap_a(a, TRUE);
+	swap_b(b, TRUE);
 	ft_printf("ss\n");
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: maroard <maroard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 11:20:35 by maroard           #+#    #+#             */
-/*   Updated: 2025/12/16 14:36:38 by maroard          ###   ########.fr       */
+/*   Updated: 2025/12/17 19:18:14 by maroard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,20 @@ typedef struct s_stack
     int		size;
 }			t_stack;
 
+typedef enum strategy_selector
+{
+	SIMPLE,
+	MEDIUM,
+	COMPLEX,
+	ADAPTIVE
+}	t_strat;
+
+typedef enum bool
+{
+	FALSE,
+	TRUE
+}	t_bool;
+
 int     ft_printf(const char *s, ...);
 
 t_node	*create_node(int content);
@@ -37,21 +51,24 @@ void	node_add_front(t_node **top, t_node *new);
 void    *clear_stack(t_node **top, t_stack *A_or_B);
 void	print_stack(t_node *top, char A_or_B);
 
-t_stack *create_stack_A(int argc, char *argv[]);
+t_stack	*create_stack_a(int argc, char *argv[]);
+int		occurence_checker(t_stack *A);
 
-int push_A(t_stack **A, t_stack **B);
-int push_B(t_stack **A, t_stack **B);
+float	compute_disorder(t_stack *A);
 
-int	swap_A(t_stack **A, int ss);
-int	swap_B(t_stack **B, int ss);
-int	swap_swap(t_stack **A, t_stack **B);
+int		push_a(t_stack **A, t_stack **B);
+int		push_b(t_stack **A, t_stack **B);
 
-int	rotate_A(t_stack **A, int rr);
-int	rotate_B(t_stack **B, int rr);
-int	rotate_rotate(t_stack **A, t_stack **B);
+int		swap_a(t_stack **A, t_bool ss);
+int		swap_b(t_stack **B, t_bool ss);
+int		swap_swap(t_stack **A, t_stack **B);
 
-int	reverse_rotate_A(t_stack **A, int rrr);
-int reverse_rotate_B(t_stack **B, int rrr);
-int	reverse_rotate_rotate(t_stack **A, t_stack **B);
+int		rotate_a(t_stack **A, t_bool rr);
+int		rotate_b(t_stack **B, t_bool rr);
+int		rotate_rotate(t_stack **A, t_stack **B);
+
+int		reverse_rotate_a(t_stack **A, t_bool rrr);
+int		reverse_rotate_b(t_stack **B, t_bool rrr);
+int		reverse_rotate_rotate(t_stack **A, t_stack **B);
 
 #endif

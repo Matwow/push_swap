@@ -6,13 +6,13 @@
 /*   By: maroard <maroard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 11:51:32 by maroard           #+#    #+#             */
-/*   Updated: 2025/12/15 18:33:27 by maroard          ###   ########.fr       */
+/*   Updated: 2025/12/17 19:20:40 by maroard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
-#include <stdlib.h>
+#include "push_swap.h"
 #include <limits.h>
+#include <stdlib.h>
 
 static int	is_number(char *arg)
 {
@@ -36,73 +36,66 @@ static int	is_number(char *arg)
 	return (1);
 }
 
-static int	link_nodes(size_t i, char **arg, t_stack **A)
+static int	add_back(size_t i, char **arg, t_stack **a)
 {
-	if (!is_number(arg[i]) || !(ft_atoll(arg[i]) >= INT_MIN && ft_atoll(arg[i]) <= INT_MAX))
+	if (!is_number(arg[i])
+		|| !(ft_atoll(arg[i]) >= INT_MIN && ft_atoll(arg[i]) <= INT_MAX))
 		return (0);
-	node_add_back(&((*A)->top), create_node(ft_atoi(arg[i])));
-	(*A)->size++;
+	node_add_back(&((*a)->top), create_node(ft_atoi(arg[i])));
+	(*a)->size++;
 	return (1);
 }
 
 static void	*free_tab(char **tab)
 {
-    size_t i;
+	size_t	i;
 
-    if (!tab)
-        return (NULL);
-    i = 0;
-    while (tab[i])
-        free(tab[i++]);
-    free(tab);
+	if (!tab)
+		return (NULL);
+	i = 0;
+	while (tab[i])
+		free(tab[i++]);
+	free(tab);
 	return (NULL);
 }
 
 static t_stack	*args_split(char *arg)
 {
-	size_t	i;
 	char	**tab;
-	t_stack	*A;
+	size_t	i;
+	t_stack	*a;
 
-	i = 0;
 	tab = ft_split(arg, ' ');
 	if (!tab || !tab[0])
 		return (free_tab(tab));
-	A = malloc(sizeof(t_stack));
-	if (!A || !is_number(tab[0]) || !(ft_atoll(tab[0]) >= INT_MIN && ft_atoll(tab[0]) <= INT_MAX))
-		return (clear_stack(&(A->top), A));
-	A->top = create_node(ft_atoi(tab[i++]));
-	if (!A->top)
-		return (clear_stack(&(A->top), A));
-	A->size = 1;
+	i = 0;
+	a = malloc(sizeof(t_stack));
+	if (!a)
+		return (NULL);
 	while (tab[i])
 	{
-		if (!link_nodes(i++, tab, &A))
-			return (clear_stack(&(A->top), A));
+		if (!add_back(i++, tab, &a))
+			return (clear_stack(&(a->top), a));
 	}
 	free_tab(tab);
-	return (A);
+	return (a);
 }
 
-t_stack	*create_stack_A(int argc, char *argv[])
+t_stack	*create_stack_a(int argc, char *argv[])
 {
 	size_t	i;
-	t_stack	*A;
+	t_stack	*a;
 
 	if (argc == 2 && ft_strchr(argv[1], ' '))
 		return (args_split(argv[1]));
 	i = 1;
-	A = malloc(sizeof(t_stack));
-	if (!A || !is_number(argv[1]) || !(ft_atoll(argv[1]) >= INT_MIN && ft_atoll(argv[1]) <= INT_MAX))
-		return (clear_stack(&(A->top), A));
-	A->top = create_node(ft_atoi(argv[i++]));
-	if (!A->top)
-		return (clear_stack(&(A->top), A));
-	A->size = 1;
+	a = malloc(sizeof(t_stack));
+	if (!a)
+		return (NULL);
 	while (i < (size_t)(argc))
 	{
-		if (!link_nodes(i++, argv, &A))
-			return (clear_stack(&(A->top), A));
+		if (!add_back(i++, argv, &a))
+			return (clear_stack(&(a->top), a));
 	}
-	return (A);
+	return (a);
 }

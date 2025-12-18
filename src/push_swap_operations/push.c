@@ -1,44 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_moves.c                                       :+:      :+:    :+:   */
+/*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maroard <maroard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 16:01:21 by maroard           #+#    #+#             */
-/*   Updated: 2025/12/15 19:15:40 by maroard          ###   ########.fr       */
+/*   Updated: 2025/12/17 19:11:55 by maroard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
-#include <stdlib.h>
+#include "push_swap.h"
 
-int push_A(t_stack **A, t_stack **B)
+int	push_a(t_stack **a, t_stack **b)
 {
-    t_node  *temp;
+	t_node	*temp;
 
-    if (!(*B) || !(*B)->top)
-        return (0);
-    temp = (*B)->top;
-    (*B)->top = (*B)->top->next;
-    node_add_front(&((*A)->top), temp);
-    (*A)->size++;
-    (*B)->size--;
-    ft_printf("pa\n");
-    return (1);
+	if (!(*b) || !(*b)->top)
+		return (0);
+	temp = (*b)->top;
+	(*b)->top = (*b)->top->next;
+	node_add_front(&((*a)->top), temp);
+	(*a)->size++;
+	(*b)->size--;
+	ft_printf("pa\n");
+	return (1);
 }
 
-int push_B(t_stack **A, t_stack **B)
+int	push_b(t_stack **a, t_stack **b)
 {
-	t_node  *temp;
+	t_node	*temp;
 
-	if (!(*A) || !(*A)->top)
+	if (!(*a) || !(*a)->top)
 		return (0);
-	temp = (*A)->top;
-	(*A)->top = (*A)->top->next;
-	node_add_front(&((*B)->top), temp);
-	(*B)->size++;
-	(*A)->size--;
+	temp = (*a)->top;
+	(*a)->top = (*a)->top->next;
+	node_add_front(&((*b)->top), temp);
+	(*b)->size++;
+	(*a)->size--;
 	ft_printf("pb\n");
 	return (1);
 }

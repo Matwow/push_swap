@@ -1,50 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reverse_rotate_moves.c                             :+:      :+:    :+:   */
+/*   reverse_rotate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maroard <maroard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 14:14:40 by maroard           #+#    #+#             */
-/*   Updated: 2025/12/16 14:44:10 by maroard          ###   ########.fr       */
+/*   Updated: 2025/12/17 19:15:32 by maroard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
-int	reverse_rotate_A(t_stack **A, int rrr)
+int	reverse_rotate_a(t_stack **a, t_bool rrr)
 {
 	t_node	*temp;
 
-	if (!(*A) || !(*A)->top || !(*A)->top->next)
+	if (!(*a) || !(*a)->top || !(*a)->top->next)
 		return (0);
-	temp = last_node((*A)->top);
-	prev_last_node((*A)->top)->next = NULL;
-	node_add_front(&((*A)->top), temp);
-	if (rrr == 0)
+	temp = last_node((*a)->top);
+	prev_last_node((*a)->top)->next = NULL;
+	node_add_front(&((*a)->top), temp);
+	if (rrr == FALSE)
 		ft_printf("rra\n");
 	return (1);
 }
 
-int reverse_rotate_B(t_stack **B, int rrr)
+int	reverse_rotate_b(t_stack **b, t_bool rrr)
 {
 	t_node	*temp;
 
-	if (!(*B) || !(*B)->top || !(*B)->top->next)
+	if (!(*b) || !(*b)->top || !(*b)->top->next)
 		return (0);
-	prev_last_node((*B)->top)->next = NULL;
-	node_add_front(&((*B)->top), temp);
-	if (rrr == 0)
+	temp = last_node((*b)->top);
+	prev_last_node((*b)->top)->next = NULL;
+	node_add_front(&((*b)->top), temp);
+	if (rrr == FALSE)
 		ft_printf("rrb\n");
 	return (1);
 }
 
-int	reverse_rotate_rotate(t_stack **A, t_stack **B)
+int	reverse_rotate_rotate(t_stack **a, t_stack **b)
 {
-	if ((!(*A) || !(*A)->top || !(*A)->top->next) || (!(*B) || !(*B)->top || !(*B)->top->next))
+	if ((!(*a) || !(*a)->top || !(*a)->top->next)
+		|| (!(*b) || !(*b)->top || !(*b)->top->next))
 		return (0);
-	reverse_rotate_A(&(*A), 1);
-	reverse_rotate_B(&(*B), 1);
+	reverse_rotate_a(a, TRUE);
+	reverse_rotate_b(b, TRUE);
 	ft_printf("rrr\n");
 	return (1);
 }

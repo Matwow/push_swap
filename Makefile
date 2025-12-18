@@ -6,14 +6,14 @@
 #    By: maroard <maroard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/01 11:16:55 by maroard           #+#    #+#              #
-#    Updated: 2025/12/11 11:01:30 by maroard          ###   ########.fr        #
+#    Updated: 2025/12/17 17:43:55 by maroard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 AR			= ar rcs
 NAME		= push_swap
 CC			= gcc
-CFLAGS		= -Wall -Wextra -Werror -g
+CFLAGS		= -I. -Wall -Wextra -Werror -g
 RM			= rm -f
 
 LIBFT_DIR	= libft
@@ -22,7 +22,7 @@ LIBFT		= $(LIBFT_DIR)/libft.a
 SRC_DIR		= src
 OBJ_DIR		= obj
 
-SRC_FILES	= $(wildcard $(SRC_DIR)/*.c)
+SRC_FILES	= $(shell find $(SRC_DIR) -type f -name "*.c")
 OBJ_FILES	= $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC_FILES))
 
 all: $(NAME)
@@ -31,6 +31,7 @@ $(NAME): $(OBJ_FILES) $(LIBFT)
 	$(CC) $(OBJ_FILES) $(LIBFT) -o $(NAME)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
+	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ_DIR):

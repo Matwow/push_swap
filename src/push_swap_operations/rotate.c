@@ -1,53 +1,54 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate_moves.c                                     :+:      :+:    :+:   */
+/*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maroard <maroard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 16:42:39 by maroard           #+#    #+#             */
-/*   Updated: 2025/12/16 14:13:12 by maroard          ###   ########.fr       */
+/*   Updated: 2025/12/17 19:15:12 by maroard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
-int	rotate_A(t_stack **A, int rr)
+int	rotate_a(t_stack **a, t_bool rr)
 {
 	t_node	*temp;
 
-	if (!(*A) || !(*A)->top || !(*A)->top->next)
+	if (!(*a) || !(*a)->top || !(*a)->top->next)
 		return (0);
-	temp = (*A)->top;
-	(*A)->top = (*A)->top->next;
+	temp = (*a)->top;
+	(*a)->top = (*a)->top->next;
 	temp->next = NULL;
-	node_add_back(&((*A)->top), temp);
-	if (rr == 0)
+	node_add_back(&((*a)->top), temp);
+	if (rr == FALSE)
 		ft_printf("ra\n");
 	return (1);
 }
 
-int	rotate_B(t_stack **B, int rr)
+int	rotate_b(t_stack **b, t_bool rr)
 {
 	t_node	*temp;
 
-	if (!(*B) || !(*B)->top || !(*B)->top->next)
+	if (!(*b) || !(*b)->top || !(*b)->top->next)
 		return (0);
-	temp = (*B)->top;
-	(*B)->top = (*B)->top->next;
+	temp = (*b)->top;
+	(*b)->top = (*b)->top->next;
 	temp->next = NULL;
-	node_add_back(&((*B)->top), temp);
-	if (rr == 0)
+	node_add_back(&((*b)->top), temp);
+	if (rr == FALSE)
 		ft_printf("rb\n");
 	return (1);
 }
 
-int	rotate_rotate(t_stack **A, t_stack **B)
+int	rotate_rotate(t_stack **a, t_stack **b)
 {
-	if ((!(*A) || !(*A)->top || !(*A)->top->next) || (!(*B) || !(*B)->top || !(*B)->top->next))
+	if ((!(*a) || !(*a)->top || !(*a)->top->next)
+		|| (!(*b) || !(*b)->top || !(*b)->top->next))
 		return (0);
-	rotate_A(&(*A), 1);
-	rotate_B(&(*B), 1);
+	rotate_a(a, TRUE);
+	rotate_b(b, TRUE);
 	ft_printf("rr");
 	return (1);
 }
