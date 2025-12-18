@@ -6,35 +6,13 @@
 /*   By: maroard <maroard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 11:51:32 by maroard           #+#    #+#             */
-/*   Updated: 2025/12/18 12:32:41 by maroard          ###   ########.fr       */
+/*   Updated: 2025/12/18 14:57:08 by maroard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <limits.h>
 #include <stdlib.h>
-
-static int	is_number(char *arg)
-{
-	size_t	i;
-
-	i = 0;
-	while ((arg[i] >= 9 && arg[i] <= 13) || arg[i] == ' ')
-		i++;
-	if (!arg[i])
-		return (0);
-	if (arg[i] == '-' || arg[i] == '+')
-		i++;
-	if (!arg[i])
-		return (0);
-	while (arg[i])
-	{
-		if (ft_isdigit(arg[i]) == 0)
-			return (0);
-		i++;
-	}
-	return (1);
-}
 
 static int	add_back(size_t i, char **arg, t_stack **a)
 {

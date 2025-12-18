@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_utils.c                                  :+:      :+:    :+:   */
+/*   push_swap_utils1.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maroard <maroard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 11:20:30 by maroard           #+#    #+#             */
-/*   Updated: 2025/12/17 18:17:22 by maroard          ###   ########.fr       */
+/*   Updated: 2025/12/18 16:08:45 by maroard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,28 +57,4 @@ void	node_add_front(t_node **top, t_node *new)
 		return ;
 	new->next = *top;
 	*top = new;
-}
-
-void	*clear_stack(t_node **top, t_stack *A_or_B)
-{
-	t_node	*temp;
-
-	while (*top)
-	{
-		temp = (*top)->next;
-		free(*top);
-		*top = temp;
-	}
-	free(A_or_B);
-	return (NULL);
-}
-
-void	print_stack(t_node *top, char A_or_B)
-{
-	ft_printf("Stack %c:\n", A_or_B);
-	while (top)
-	{
-		ft_printf("[ %d ]\n", top->content);
-		top = top->next;
-	}
 }

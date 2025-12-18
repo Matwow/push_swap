@@ -6,7 +6,7 @@
 /*   By: maroard <maroard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 11:20:35 by maroard           #+#    #+#             */
-/*   Updated: 2025/12/18 12:23:43 by maroard          ###   ########.fr       */
+/*   Updated: 2025/12/18 17:02:23 by maroard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,15 @@ void	node_add_back(t_node **top, t_node *new);
 void	node_add_front(t_node **top, t_node *new);
 void    *clear_stack(t_node **top, t_stack *A_or_B);
 void	print_stack(t_node *top, char A_or_B);
+int		is_number(char *arg);
+int		stack_is_sorted(t_stack **A_or_B);
 
-int		strategy_selector(int argc, char *argv[], int *strategy);
+int		strategy_selector(int argc, char *argv[], t_strat *strategy);
 t_stack	*create_stack_a(int argc, char *argv[]);
 int		occurence_checker(t_stack *A);
-
 float	compute_disorder(t_stack *A);
+
+int		simple_min_max_extraction(t_stack **a, t_stack **b);
 
 int		push_a(t_stack **A, t_stack **B);
 int		push_b(t_stack **A, t_stack **B);
