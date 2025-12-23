@@ -6,7 +6,7 @@
 /*   By: maroard <maroard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 11:20:32 by maroard           #+#    #+#             */
-/*   Updated: 2025/12/22 19:14:04 by maroard          ###   ########.fr       */
+/*   Updated: 2025/12/23 16:34:17 by maroard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ int	main(int argc, char *argv[])
 	if (compute_disorder(a) == 0)
 		return (0);
 	algo_caller(&a, &b, strategy);
+	print_stack(a->top, 'A');
+	print_stack(b->top, 'B');
 	clear_stack(&a->top, a);
 	clear_stack(&b->top, b);
 	return (0);

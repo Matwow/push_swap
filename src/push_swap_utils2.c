@@ -6,7 +6,7 @@
 /*   By: maroard <maroard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 16:07:01 by maroard           #+#    #+#             */
-/*   Updated: 2025/12/22 18:53:10 by maroard          ###   ########.fr       */
+/*   Updated: 2025/12/23 13:45:28 by maroard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,35 +44,35 @@ int	is_number(char *arg)
 	return (1);
 }
 
-int	top_is_extremum(t_stack *A_or_B, t_bool min, t_bool max)
+int	is_extremum(t_node *to_check ,t_stack *A_or_B, t_bool min, t_bool max)
 {
-	t_node	*check;
+	t_node	*checker;
 
-	if (!(A_or_B->top->next))
+	if (!(A_or_B)->top)
 		return (1);
-	check = A_or_B->top->next;
-	while (check)
+	checker = A_or_B->top;
+	while (checker)
 	{
-		if ((min == TRUE && A_or_B->top->content > check->content)
-			|| (max == TRUE && A_or_B->top->content < check->content))
+		if ((min == TRUE && to_check->content > checker->content)
+			|| (max == TRUE && to_check->content < checker->content))
 			return (0);
-		check = check->next;
+		checker = checker->next;
 	}
 	return (1);
 }
 
 int	stack_a_is_sorted(t_stack *A, t_stack *B)
 {
-	t_node	*check;
+	t_node	*checker;
 
 	if (!A->top || !A->top->next || B->top)
 		return (0);
-	check = (A)->top;
-	while (check->next)
+	checker = (A)->top;
+	while (checker->next)
 	{
-		if (check->content > check->next->content)
+		if (checker->content > checker->next->content)
 			return (0);
-		check = check->next;
+		checker = checker->next;
 	}
 	return (1);
 }

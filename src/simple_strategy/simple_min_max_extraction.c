@@ -6,22 +6,36 @@
 /*   By: maroard <maroard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 15:48:49 by maroard           #+#    #+#             */
-/*   Updated: 2025/12/22 19:32:45 by maroard          ###   ########.fr       */
+/*   Updated: 2025/12/23 16:43:58 by maroard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	sort_b(t_stack **B)
+static void	sort_b(t_stack **A, t_stack **B)
 {
-	if (!(*B)->top->next || top_is_extremum(*B, FALSE, TRUE))
-		return ;
-	if (top_is_extremum(*B, TRUE, FALSE))
+	t_node	*current;
+	int		i;
+	int		j;
+
+	if (is_extremum((*A)->top, *B, FALSE, TRUE))
+		return (push_b(A, B));
+	if (is_extremum((*A)->top, *B, TRUE, FALSE))
+		return (push_b(A, B), rotate_b(B, FALSE));
+	current = (*B)->top;
+	i = 0;
+	while (current && (*A)->top->content < current->content)
 	{
-		rotate_b(B, FALSE);
-		return ;
+		current = current->next;
+		i++;
 	}
-	
+	j = i;
+	while (i--)
+		rotate_b(B, FALSE);
+	push_b(A, B);
+	while (j--)
+		reverse_rotate_b(B, FALSE);
+	return ;
 }
 
 static int	find_extremum(t_stack *A, t_bool min, t_bool max)
@@ -83,35 +97,20 @@ static void	extract_a(t_stack **A, t_stack **B)
 	else
 		cost = (*A)->size - i_to_extract;
 	i = 0;
-	while (i < cost)
+	while (i++ < cost)
 	{
 		if (i_to_extract <= (*A)->size - i_to_extract)
 			rotate_a(A, FALSE);
 		else
 			reverse_rotate_a(A, FALSE);
-		i++;
 	}
-	push_b(A, B);
-	if ((*B)->top && (*B)->top->next)
-	{
-		if ((*B)->top->content < (*B)->top->next->content)
-			swap_b(B, FALSE);	
-	}
+	return (sort_b(A, B));
 }
 
 void	simple_min_max_extraction(t_stack **A, t_stack **B)
 {
 	while ((*A)->top)
-	{
 		extract_a(A, B);
-		sort_b(B);
-		print_stack((*A)->top, 'A');
-		print_stack((*B)->top, 'B');
-	}
 	while ((*B)->top)
-	{
 		push_a(A, B);
-		print_stack((*A)->top, 'A');
-		print_stack((*B)->top, 'B');
-	}
 }

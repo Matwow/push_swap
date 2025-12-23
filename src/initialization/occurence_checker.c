@@ -6,7 +6,7 @@
 /*   By: maroard <maroard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 16:38:11 by maroard           #+#    #+#             */
-/*   Updated: 2025/12/17 18:59:38 by maroard          ###   ########.fr       */
+/*   Updated: 2025/12/23 11:13:27 by maroard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 int	occurence_checker(t_stack *A)
 {
 	t_node	*current;
-	t_node	*next;
+	t_node	*checker;
 
 	current = A->top;
 	while (current)
 	{
-		next = current->next;
-		while (next)
+		checker = current->next;
+		while (checker)
 		{
-			if (current->content == next->content)
+			if (current->content == checker->content)
 				return (0);
-			next = next->next;
+			checker = checker->next;
 		}
 		current = current->next;
 	}

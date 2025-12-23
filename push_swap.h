@@ -6,7 +6,7 @@
 /*   By: maroard <maroard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 11:20:35 by maroard           #+#    #+#             */
-/*   Updated: 2025/12/22 18:52:42 by maroard          ###   ########.fr       */
+/*   Updated: 2025/12/23 11:58:36 by maroard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	node_add_front(t_node **top, t_node *new);
 void    *clear_stack(t_node **top, t_stack *A_or_B);
 void	print_stack(t_node *top, char A_or_B);
 int		is_number(char *arg);
-int		top_is_extremum(t_stack *A_or_B, t_bool min, t_bool max);
+int		is_extremum(t_node *to_check, t_stack *A_or_B, t_bool min, t_bool max);
 int		stack_a_is_sorted(t_stack *A, t_stack *B);
 
 int		strategy_selector(int argc, char *argv[], t_strat *strategy);
@@ -61,19 +61,19 @@ float	compute_disorder(t_stack *A);
 
 void	simple_min_max_extraction(t_stack **a, t_stack **b);
 
-int		push_a(t_stack **A, t_stack **B);
-int		push_b(t_stack **A, t_stack **B);
+void	push_a(t_stack **A, t_stack **B);
+void	push_b(t_stack **A, t_stack **B);
 
-int		swap_a(t_stack **A, t_bool ss);
-int		swap_b(t_stack **B, t_bool ss);
-int		swap_swap(t_stack **A, t_stack **B);
+void	swap_a(t_stack **A, t_bool ss);
+void	swap_b(t_stack **B, t_bool ss);
+void	swap_swap(t_stack **A, t_stack **B);
 
-int		rotate_a(t_stack **A, t_bool rr);
-int		rotate_b(t_stack **B, t_bool rr);
-int		rotate_rotate(t_stack **A, t_stack **B);
+void	rotate_a(t_stack **A, t_bool rr);
+void	rotate_b(t_stack **B, t_bool rr);
+void	rotate_rotate(t_stack **A, t_stack **B);
 
-int		reverse_rotate_a(t_stack **A, t_bool rrr);
-int		reverse_rotate_b(t_stack **B, t_bool rrr);
-int		reverse_rotate_rotate(t_stack **A, t_stack **B);
+void	reverse_rotate_a(t_stack **A, t_bool rrr);
+void	reverse_rotate_b(t_stack **B, t_bool rrr);
+void	reverse_rotate_rotate(t_stack **A, t_stack **B);
 
 #endif

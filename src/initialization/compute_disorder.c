@@ -6,7 +6,7 @@
 /*   By: maroard <maroard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 16:00:10 by maroard           #+#    #+#             */
-/*   Updated: 2025/12/17 19:00:18 by maroard          ###   ########.fr       */
+/*   Updated: 2025/12/23 11:12:54 by maroard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 float	compute_disorder(t_stack *A)
 {
 	t_node	*current;
-	t_node	*next;
+	t_node	*checker;
 	float	mistakes;
 	float	total_pairs;
 
@@ -26,13 +26,13 @@ float	compute_disorder(t_stack *A)
 	total_pairs = 0;
 	while (current)
 	{
-		next = current->next;
-		while (next)
+		checker = current->next;
+		while (checker)
 		{
 			total_pairs++;
-			if (current->content > next->content)
+			if (current->content > checker->content)
 				mistakes++;
-			next = next->next;
+			checker = checker->next;
 		}
 		current = current->next;
 	}
