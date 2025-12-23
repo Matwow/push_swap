@@ -6,7 +6,7 @@
 /*   By: maroard <maroard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 15:48:49 by maroard           #+#    #+#             */
-/*   Updated: 2025/12/23 16:43:58 by maroard          ###   ########.fr       */
+/*   Updated: 2025/12/23 16:51:32 by maroard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ static void	sort_b(t_stack **A, t_stack **B)
 	push_b(A, B);
 	while (j--)
 		reverse_rotate_b(B, FALSE);
-	return ;
 }
 
 static int	find_extremum(t_stack *A, t_bool min, t_bool max)
