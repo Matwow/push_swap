@@ -6,7 +6,7 @@
 #    By: maroard <maroard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/01 11:16:55 by maroard           #+#    #+#              #
-#    Updated: 2025/12/17 17:43:55 by maroard          ###   ########.fr        #
+#    Updated: 2025/12/26 14:32:29 by maroard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ OBJ_FILES	= $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC_FILES))
 all: $(NAME)
 
 $(NAME): $(OBJ_FILES) $(LIBFT)
-	$(CC) $(OBJ_FILES) $(LIBFT) -o $(NAME)
+	$(CC) $(OBJ_FILES) $(LIBFT) -lm -o $(NAME)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 	mkdir -p $(dir $@)

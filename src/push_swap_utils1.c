@@ -6,7 +6,7 @@
 /*   By: maroard <maroard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 11:20:30 by maroard           #+#    #+#             */
-/*   Updated: 2025/12/22 13:27:27 by maroard          ###   ########.fr       */
+/*   Updated: 2025/12/26 11:35:37 by maroard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_node	*create_node(int content)
 	if (!node)
 		return (NULL);
 	node->content = content;
+	node->index = 0;
 	node->next = NULL;
 	node->prev = NULL;
 	return (node);

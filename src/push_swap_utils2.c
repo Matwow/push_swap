@@ -6,7 +6,7 @@
 /*   By: maroard <maroard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 16:07:01 by maroard           #+#    #+#             */
-/*   Updated: 2025/12/23 13:45:28 by maroard          ###   ########.fr       */
+/*   Updated: 2025/12/26 12:17:40 by maroard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,11 @@ int	is_extremum(t_node *to_check ,t_stack *A_or_B, t_bool min, t_bool max)
 	return (1);
 }
 
-int	stack_a_is_sorted(t_stack *A, t_stack *B)
+int	stack_a_is_sorted(t_stack *A)
 {
 	t_node	*checker;
 
-	if (!A->top || !A->top->next || B->top)
+	if (!A->top || !A->top->next)
 		return (0);
 	checker = (A)->top;
 	while (checker->next)

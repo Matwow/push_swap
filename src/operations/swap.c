@@ -6,7 +6,7 @@
 /*   By: maroard <maroard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 16:01:23 by maroard           #+#    #+#             */
-/*   Updated: 2025/12/23 11:57:04 by maroard          ###   ########.fr       */
+/*   Updated: 2025/12/26 12:43:50 by maroard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	swap_a(t_stack **a, t_bool ss)
 	(*a)->top->next = temp;
 	if (ss == FALSE)
 		ft_printf("sa\n");
-	return ;
 }
 
 void	swap_b(t_stack **b, t_bool ss)
@@ -33,7 +32,6 @@ void	swap_b(t_stack **b, t_bool ss)
 	(*b)->top->next = temp;
 	if (ss == FALSE)
 		ft_printf("sb\n");
-	return ;
 }
 
 void	swap_swap(t_stack **a, t_stack **b)
@@ -41,5 +39,4 @@ void	swap_swap(t_stack **a, t_stack **b)
 	swap_a(a, TRUE);
 	swap_b(b, TRUE);
 	ft_printf("ss\n");
-	return ;
 }

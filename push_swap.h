@@ -6,7 +6,7 @@
 /*   By: maroard <maroard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 11:20:35 by maroard           #+#    #+#             */
-/*   Updated: 2025/12/23 11:58:36 by maroard          ###   ########.fr       */
+/*   Updated: 2025/12/26 12:17:27 by maroard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 typedef struct s_node
 {
     int				content;
+	int				index;
     struct s_node	*next;
 	struct s_node	*prev;
 }					t_node;
@@ -52,7 +53,7 @@ void    *clear_stack(t_node **top, t_stack *A_or_B);
 void	print_stack(t_node *top, char A_or_B);
 int		is_number(char *arg);
 int		is_extremum(t_node *to_check, t_stack *A_or_B, t_bool min, t_bool max);
-int		stack_a_is_sorted(t_stack *A, t_stack *B);
+int		stack_a_is_sorted(t_stack *A);
 
 int		strategy_selector(int argc, char *argv[], t_strat *strategy);
 t_stack	*create_stack_a(int argc, char *argv[]);
@@ -60,6 +61,8 @@ int		occurence_checker(t_stack *A);
 float	compute_disorder(t_stack *A);
 
 void	simple_min_max_extraction(t_stack **a, t_stack **b);
+
+void	range_based_sorting(t_stack **A, t_stack **B);
 
 void	push_a(t_stack **A, t_stack **B);
 void	push_b(t_stack **A, t_stack **B);

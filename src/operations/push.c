@@ -6,7 +6,7 @@
 /*   By: maroard <maroard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 16:01:21 by maroard           #+#    #+#             */
-/*   Updated: 2025/12/23 11:57:58 by maroard          ###   ########.fr       */
+/*   Updated: 2025/12/26 12:43:44 by maroard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	push_a(t_stack **a, t_stack **b)
 	(*a)->size++;
 	(*b)->size--;
 	ft_printf("pa\n");
-	return ;
 }
 
 void	push_b(t_stack **a, t_stack **b)
@@ -35,5 +34,4 @@ void	push_b(t_stack **a, t_stack **b)
 	(*b)->size++;
 	(*a)->size--;
 	ft_printf("pb\n");
-	return ;
 }
