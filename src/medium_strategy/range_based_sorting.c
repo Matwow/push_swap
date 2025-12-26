@@ -6,7 +6,7 @@
 /*   By: maroard <maroard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 11:31:02 by maroard           #+#    #+#             */
-/*   Updated: 2025/12/26 15:53:32 by maroard          ###   ########.fr       */
+/*   Updated: 2025/12/26 16:13:33 by maroard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ static void	injection(t_stack **A, t_stack **B)
 	int	i;
 
 	i = 0;
-	indexation(B);
 	while ((*B)->top->index != (*B)->size - 1)
 	{
 		rotate_b(B, FALSE);
@@ -62,7 +61,6 @@ static void	injection(t_stack **A, t_stack **B)
 
 static void	extraction(t_stack **A, t_stack **B, int range_size)
 {
-	indexation(A);
 	if ((*B)->size / range_size >= 1)
 		indexation(A);
 	if ((*A)->top->index < range_size)
@@ -76,8 +74,10 @@ void	range_based_sorting(t_stack **A, t_stack **B)
 	int	range_size;
 
 	range_size = (int)sqrtf((*A)->size);
+	indexation(A);
 	while ((*A)->top)
 		extraction(A, B, range_size);
+	indexation(B);
 	while ((*B)->top)
 		injection(A, B);
 }
