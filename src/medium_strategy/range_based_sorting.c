@@ -6,37 +6,12 @@
 /*   By: maroard <maroard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 11:31:02 by maroard           #+#    #+#             */
-/*   Updated: 2025/12/26 16:13:33 by maroard          ###   ########.fr       */
+/*   Updated: 2025/12/26 17:59:39 by maroard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "math.h"
-
-static void	indexation(t_stack **A_or_B)
-{
-	t_node	*current;
-	t_node	*checker;
-
-	current = (*A_or_B)->top;
-	while (current)
-	{
-		current->index = 0;
-		current = current->next;
-	}
-	current = (*A_or_B)->top;
-	while (current)
-	{
-		checker = (*A_or_B)->top;
-		while (checker)
-		{
-			if (checker->content < current->content)
-				current->index++;
-			checker = checker->next;
-		}
-		current = current->next;
-	}
-}
 
 static void	injection(t_stack **A, t_stack **B)
 {

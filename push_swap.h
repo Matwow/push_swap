@@ -6,7 +6,7 @@
 /*   By: maroard <maroard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 11:20:35 by maroard           #+#    #+#             */
-/*   Updated: 2025/12/26 12:17:27 by maroard          ###   ########.fr       */
+/*   Updated: 2025/12/26 16:47:14 by maroard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef enum bool
 
 int     ft_printf(const char *s, ...);
 
+
 t_node	*create_node(int content);
 t_node	*last_node(t_node *top);
 void	node_add_back(t_node **top, t_node *new);
@@ -53,16 +54,19 @@ void    *clear_stack(t_node **top, t_stack *A_or_B);
 void	print_stack(t_node *top, char A_or_B);
 int		is_number(char *arg);
 int		is_extremum(t_node *to_check, t_stack *A_or_B, t_bool min, t_bool max);
-int		stack_a_is_sorted(t_stack *A);
+void	indexation(t_stack **A_or_B);
+
 
 int		strategy_selector(int argc, char *argv[], t_strat *strategy);
 t_stack	*create_stack_a(int argc, char *argv[]);
 int		occurence_checker(t_stack *A);
 float	compute_disorder(t_stack *A);
 
+
 void	simple_min_max_extraction(t_stack **a, t_stack **b);
 
 void	range_based_sorting(t_stack **A, t_stack **B);
+
 
 void	push_a(t_stack **A, t_stack **B);
 void	push_b(t_stack **A, t_stack **B);

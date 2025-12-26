@@ -6,7 +6,7 @@
 /*   By: maroard <maroard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 16:07:01 by maroard           #+#    #+#             */
-/*   Updated: 2025/12/26 12:17:40 by maroard          ###   ########.fr       */
+/*   Updated: 2025/12/26 16:46:24 by maroard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,18 +61,27 @@ int	is_extremum(t_node *to_check ,t_stack *A_or_B, t_bool min, t_bool max)
 	return (1);
 }
 
-int	stack_a_is_sorted(t_stack *A)
+void	indexation(t_stack **A_or_B)
 {
+	t_node	*current;
 	t_node	*checker;
 
-	if (!A->top || !A->top->next)
-		return (0);
-	checker = (A)->top;
-	while (checker->next)
+	current = (*A_or_B)->top;
+	while (current)
 	{
-		if (checker->content > checker->next->content)
-			return (0);
-		checker = checker->next;
+		current->index = 0;
+		current = current->next;
 	}
-	return (1);
+	current = (*A_or_B)->top;
+	while (current)
+	{
+		checker = (*A_or_B)->top;
+		while (checker)
+		{
+			if (checker->content < current->content)
+				current->index++;
+			checker = checker->next;
+		}
+		current = current->next;
+	}
 }
