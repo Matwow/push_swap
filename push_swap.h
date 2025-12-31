@@ -6,7 +6,7 @@
 /*   By: maroard <maroard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 11:20:35 by maroard           #+#    #+#             */
-/*   Updated: 2025/12/26 16:47:14 by maroard          ###   ########.fr       */
+/*   Updated: 2025/12/31 17:36:17 by maroard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	simple_min_max_extraction(t_stack **a, t_stack **b);
 
 void	range_based_sorting(t_stack **A, t_stack **B);
 
+void	radix_sort_adaptation_lsd(t_stack **A, t_stack **B);
 
 void	push_a(t_stack **A, t_stack **B);
 void	push_b(t_stack **A, t_stack **B);

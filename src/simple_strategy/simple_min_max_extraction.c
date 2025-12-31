@@ -6,7 +6,7 @@
 /*   By: maroard <maroard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 15:48:49 by maroard           #+#    #+#             */
-/*   Updated: 2025/12/26 11:30:15 by maroard          ###   ########.fr       */
+/*   Updated: 2025/12/31 17:37:10 by maroard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ static int	find_extremum(t_stack *A, t_bool min, t_bool max)
 	}
 	return (position);
 }
-
 static int	chose_min_or_max(t_stack *A)
 {
 	int	pos_min;

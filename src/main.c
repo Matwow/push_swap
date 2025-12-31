@@ -6,7 +6,7 @@
 /*   By: maroard <maroard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 11:20:32 by maroard           #+#    #+#             */
-/*   Updated: 2025/12/26 14:16:55 by maroard          ###   ########.fr       */
+/*   Updated: 2025/12/29 12:34:14 by maroard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ static void	algo_caller(t_stack **a, t_stack **b, int strategy)
 		return (simple_min_max_extraction(a, b));
 	if (strategy == MEDIUM)
 		return (range_based_sorting(a, b));
-	// if (strategy == COMPLEX)
-	// 	return ();
+	if (strategy == COMPLEX)
+		return (radix_sort_adaptation_lsd(a, b));
 }
 
 static int	init(int argc, char *argv[], t_stack **a, t_stack **b)

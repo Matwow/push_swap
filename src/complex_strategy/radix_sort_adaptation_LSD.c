@@ -6,14 +6,51 @@
 /*   By: maroard <maroard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 16:45:39 by maroard           #+#    #+#             */
-/*   Updated: 2025/12/26 18:12:49 by maroard          ###   ########.fr       */
+/*   Updated: 2025/12/31 17:56:39 by maroard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+static int	find_nb_bits_max_index(t_stack *A)
+{
+	int		index_max;
+	int		count;
+
+	index_max = A->size - 1;
+	count = 0;
+	while (index_max != 0)
+	{
+		index_max = index_max >> 1;
+		count++;
+	}
+	return (count);
+}
+
 void	radix_sort_adaptation_lsd(t_stack **A, t_stack **B)
 {
+	int		i;
+	int		k;
+	int		nb_elements;
+	int		nb_rounds;
+
+	i = 0;
+	k = 0;
+	nb_elements = (*A)->size;
+	nb_rounds = find_nb_bits_max_index(*A);
 	indexation(A);
-	
+	while (nb_rounds--)
+	{
+		while (i++ < nb_elements)
+		{
+			if ((((*A)->top->index >> k) & 1) == 1)
+				rotate_a(A, FALSE);
+			else
+				push_b(A, B);
+		}
+		while ((*B)->top)
+			push_a(A, B);
+		i = 0;
+		k++;
+	}
 }
