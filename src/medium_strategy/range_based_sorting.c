@@ -6,31 +6,31 @@
 /*   By: maroard <maroard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 11:31:02 by maroard           #+#    #+#             */
-/*   Updated: 2026/01/01 17:26:30 by maroard          ###   ########.fr       */
+/*   Updated: 2026/01/02 17:28:22 by maroard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "math.h"
 
-static t_bool	should_rotate(t_stack *A_or_B, int range_size, t_bool extraction, t_bool injection)
+static t_bool	should_rotate(t_stack A_or_B, int range_size, t_bool extraction, t_bool injection)
 {
 	t_node	*current;
 	int		i;
 	int		j;
 
-	current = A_or_B->top;
+	current = A_or_B.top;
 	i = 0;
 	j = 0;
 	while (current && ((extraction && !(current->index < range_size))
-		|| (injection && current->index != A_or_B->size - 1)))
+		|| (injection && current->index != A_or_B.size - 1)))
 	{
 		current = current->next;
 		i++;
 	}
-	current = last_node(A_or_B->top);
+	current = last_node(A_or_B.top);
 	while (current && ((extraction && !(current->index < range_size))
-		|| (injection && current->index != A_or_B->size - 1)))
+		|| (injection && current->index != A_or_B.size - 1)))
 	{
 		current = current->prev;
 		j++;
@@ -40,54 +40,54 @@ static t_bool	should_rotate(t_stack *A_or_B, int range_size, t_bool extraction, 
 	return (FALSE);
 }
 
-static void	injection(t_stack **A, t_stack **B)
+static void	injection(t_ctx *ctx)
 {
 	t_bool	rotate;
 	int		i;
 
-	rotate = should_rotate((*B), 0, FALSE, TRUE);
+	rotate = should_rotate(ctx->b, 0, FALSE, TRUE);
 	i = 0;
-	while ((*B)->top->index != (*B)->size - 1)
+	while (ctx->b.top->index != ctx->b.size - 1)
 	{
-		if ((*B)->size == 2 && (*B)->top->index < (*B)->top->next->index)
-			swap_b(B, FALSE);
+		if (ctx->b.size == 2 && ctx->b.top->index < ctx->b.top->next->index)
+			swap_b(ctx, FALSE);
 		else if (rotate)
-			rotate_b(B, FALSE);
+			rotate_b(ctx, FALSE);
 		else
-			reverse_rotate_b(B, FALSE);
+			reverse_rotate_b(ctx, FALSE);
 		i++;
 	}
-	push_a(A, B);
-	while ((*B)->size > 2 && i--)
+	push_a(ctx);
+	while (ctx->b.size > 2 && i--)
 	{
 		if (rotate)
-			reverse_rotate_b(B, FALSE);
+			reverse_rotate_b(ctx, FALSE);
 		else
-			rotate_b(B, FALSE);	
+			rotate_b(ctx, FALSE);	
 	}
 }
 
-static void	extraction(t_stack **A, t_stack **B, int range_size)
+static void	extraction(t_ctx *ctx, int range_size)
 {
-	if ((*B)->size / range_size >= 1)
-		indexation(*A);
-	if ((*A)->top->index < range_size)
-		push_b(A, B);
-	else if (should_rotate((*A), range_size, TRUE, FALSE))
-		rotate_a(A, FALSE);
+	if (ctx->b.size / range_size >= 1)
+		indexation(ctx->a);
+	if (ctx->a.top->index < range_size)
+		push_b(ctx);
+	else if (should_rotate(ctx->a, range_size, TRUE, FALSE))
+		rotate_a(ctx, FALSE);
 	else
-		reverse_rotate_a(A, FALSE);
+		reverse_rotate_a(ctx, FALSE);
 }
 
-void	range_based_sorting(t_stack **A, t_stack **B)
+void	range_based_sorting(t_ctx *ctx)
 {
 	int	range_size;
 
-	range_size = (int)sqrtf((*A)->size);
-	indexation(*A);
-	while ((*A)->top)
-		extraction(A, B, range_size);
-	indexation(*B);
-	while ((*B)->top)
-		injection(A, B);
+	range_size = (int)sqrtf(ctx->a.size);
+	indexation(ctx->a);
+	while (ctx->a.top)
+		extraction(ctx, range_size);
+	indexation(ctx->b);
+	while (ctx->b.top)
+		injection(ctx);
 }

@@ -6,48 +6,48 @@
 /*   By: maroard <maroard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 16:42:39 by maroard           #+#    #+#             */
-/*   Updated: 2025/12/26 17:43:35 by maroard          ###   ########.fr       */
+/*   Updated: 2026/01/02 18:41:02 by maroard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rotate_a(t_stack **A, t_bool rr)
+void	rotate_a(t_ctx *ctx, t_bool rr)
 {
 	t_node	*temp;
 
 	
-	if (!(*A)->top || !(*A)->top->next)
+	if (!ctx->a.top || !ctx->a.top->next)
 		return ;
-	temp = (*A)->top;
-	(*A)->top = (*A)->top->next;
-	(*A)->top->prev = NULL;
+	temp = ctx->a.top;
+	ctx->a.top = ctx->a.top->next;
+	ctx->a.top->prev = NULL;
 	temp->next = NULL;
 	temp->prev = NULL;
-	node_add_back(&((*A)->top), temp);
+	node_add_back(&ctx->a.top, temp);
 	if (rr == FALSE)
-		ft_printf("ra\n");
+		logs_manager(ctx, RA);
 }
 
-void	rotate_b(t_stack **B, t_bool rr)
+void	rotate_b(t_ctx *ctx, t_bool rr)
 {
 	t_node	*temp;
 
-	if (!(*B)->top || !(*B)->top->next)
+	if (!ctx->b.top || !ctx->b.top->next)
 		return ;
-	temp = (*B)->top;
-	(*B)->top = (*B)->top->next;
-	(*B)->top->prev = NULL;
+	temp = ctx->b.top;
+	ctx->b.top = ctx->b.top->next;
+	ctx->b.top->prev = NULL;
 	temp->next = NULL;
 	temp->prev = NULL;
-	node_add_back(&((*B)->top), temp);
+	node_add_back(&ctx->b.top, temp);
 	if (rr == FALSE)
-		ft_printf("rb\n");
+		logs_manager(ctx, RB);
 }
 
-void	rotate_rotate(t_stack **A, t_stack **B)
+void	rotate_rotate(t_ctx *ctx)
 {
-	rotate_a(A, TRUE);
-	rotate_b(B, TRUE);
-	ft_printf("rr");
+	rotate_a(ctx, TRUE);
+	rotate_b(ctx, TRUE);
+	logs_manager(ctx, RR);
 }

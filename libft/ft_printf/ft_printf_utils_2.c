@@ -1,25 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_printf_utils_2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maroard <maroard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/24 11:36:09 by maroard           #+#    #+#             */
-/*   Updated: 2026/01/02 18:20:30 by maroard          ###   ########.fr       */
+/*   Created: 2026/01/02 11:57:47 by maroard           #+#    #+#             */
+/*   Updated: 2026/01/02 18:20:38 by maroard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-# include "libft.h"
+int	print_double(double n)
+{
+	int	int_part;
+	int	decimal;
+	int	len;
 
-int	print_str(char *str);
-int	print_int(int n);
-int	print_unsigned_int(unsigned int n);
-int	print_hex(unsigned long n, int uppercase);
-int	print_ptr(void *ptr);
-int	print_double(double n);
-
-#endif
+	len = 0;
+	if (n < 0)
+	{
+		n = -n;
+		len += print_str("-");
+	}
+	int_part = (int)n;
+	decimal = (int)((n - int_part) * 100);
+	len += print_int(int_part);
+	if (decimal < 10)
+		len += print_str(".0");
+	else
+		len += print_str(".");
+	len += print_int(decimal);
+	return (len);
+}

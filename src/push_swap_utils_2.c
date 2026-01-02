@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_utils2.c                                 :+:      :+:    :+:   */
+/*   push_swap_utils_2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maroard <maroard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 16:07:01 by maroard           #+#    #+#             */
-/*   Updated: 2026/01/01 15:31:07 by maroard          ###   ########.fr       */
+/*   Updated: 2026/01/02 17:33:36 by maroard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,13 @@ int	is_number(char *arg)
 	return (1);
 }
 
-int	is_extremum(t_node *to_check ,t_stack *A_or_B, t_bool min, t_bool max)
+int	is_extremum(t_node *to_check ,t_stack A_or_B, t_bool min, t_bool max)
 {
 	t_node	*checker;
 
-	if (!(A_or_B)->top)
+	if (!A_or_B.top)
 		return (1);
-	checker = A_or_B->top;
+	checker = A_or_B.top;
 	while (checker)
 	{
 		if ((min == TRUE && to_check->content > checker->content)
@@ -61,21 +61,21 @@ int	is_extremum(t_node *to_check ,t_stack *A_or_B, t_bool min, t_bool max)
 	return (1);
 }
 
-void	indexation(t_stack *A_or_B)
+void	indexation(t_stack A_or_B)
 {
 	t_node	*current;
 	t_node	*checker;
 
-	current = A_or_B->top;
+	current = A_or_B.top;
 	while (current)
 	{
 		current->index = 0;
 		current = current->next;
 	}
-	current = A_or_B->top;
+	current = A_or_B.top;
 	while (current)
 	{
-		checker = A_or_B->top;
+		checker = A_or_B.top;
 		while (checker)
 		{
 			if (checker->content < current->content)

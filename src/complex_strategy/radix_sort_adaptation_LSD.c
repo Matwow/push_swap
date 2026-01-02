@@ -6,18 +6,18 @@
 /*   By: maroard <maroard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 16:45:39 by maroard           #+#    #+#             */
-/*   Updated: 2026/01/01 12:38:37 by maroard          ###   ########.fr       */
+/*   Updated: 2026/01/02 17:29:35 by maroard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	find_nb_bits_max_index(t_stack *A)
+static int	find_nb_bits_max_index(t_stack A)
 {
 	int	index_max;
 	int	count;
 
-	index_max = A->size - 1;
+	index_max = A.size - 1;
 	count = 0;
 	while (index_max != 0)
 	{
@@ -27,7 +27,7 @@ static int	find_nb_bits_max_index(t_stack *A)
 	return (count);
 }
 
-void	radix_sort_adaptation_lsd(t_stack **A, t_stack **B)
+void	radix_sort_adaptation_lsd(t_ctx *ctx)
 {
 	int	i;
 	int	k;
@@ -35,21 +35,21 @@ void	radix_sort_adaptation_lsd(t_stack **A, t_stack **B)
 	int	nb_elements;
 
 	k = 0;
-	nb_rounds = find_nb_bits_max_index(*A);
-	nb_elements = (*A)->size;
-	indexation(*A);
+	nb_rounds = find_nb_bits_max_index(ctx->a);
+	nb_elements = ctx->a.size;
+	indexation(ctx->a);
 	while (nb_rounds--)
 	{
 		i = 0;
 		while (i++ < nb_elements)
 		{
-			if ((((*A)->top->index >> k) & 1) == 1)
-				rotate_a(A, FALSE);
+			if (((ctx->a.top->index >> k) & 1) == 1)
+				rotate_a(ctx, FALSE);
 			else
-				push_b(A, B);
+				push_b(ctx);
 		}
-		while ((*B)->top)
-			push_a(A, B);
+		while (ctx->b.top)
+			push_a(ctx);
 		k++;
 	}
 }
